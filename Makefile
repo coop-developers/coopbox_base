@@ -1,17 +1,24 @@
 PYTHON=python
-.PHONY: all runserver test check
+.PHONY: migrate runserver test test-strict pytest flakes flake8
 
-all:
-	$(PYTHON) ./withenv.py -N
+migrate:
+	$(PYTHON) ./withenv.py manage.py migrate
 
 runserver:
 	$(PYTHON) ./withenv.py manage.py runserver
 
-test: check
+test: pytest flakes
+
+test-strict: pytest flake8
+
+pytest:
 	$(PYTHON) ./withenv.py py.test
 
-check:
-	# flakes
+flakes:
+	$(PYTHON) ./withenv.py pyflakes coopbox_base
+
+flake8:
+	$(PYTHON) ./withenv.py flake8 coopbox_base
 
 clean:
 	find -name '*.pyc' -delete
