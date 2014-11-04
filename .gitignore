@@ -1,0 +1,6 @@
+*.py[co]
+.*.swp
+.virtualenv_run*
+*.sqlite3
+.*.un~
+*~
