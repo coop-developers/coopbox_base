@@ -12,8 +12,8 @@ make runserver
 If you're using windows, have Python 2.7 installed, pip (https://pip.pypa.io/en/latest/installing.html) and virtualenv (pip install virtualenv), open cmd and do the following:
 ```
 cd <path to project>
-withenv.py manage.py migrate
-withenv.py manage.py runserver
+withenv.py python manage.py migrate
+withenv.py python manage.py runserver
 ```
 
 You can then visit the development version of the site at http://127.0.0.1:8000/
@@ -48,4 +48,4 @@ Does any command not work?  Try `make clean` first!
 If that still doesn't work, contact us or file an issue.
 
 ## Windows Developers
-Python is in general quite Windows friendly. However, due to its simplicity, we're using Make to record command test/development commands.  Before we decide to move the whole lot into a Python-based solution however, please peek into `Makefile`, and copy-paste the corresponding snippets of code in `Makefile` into your cmd, without the `$(PYTHON)` part.
+Python is in general quite Windows friendly. However, due to its simplicity, we're using Make to record command test/development commands.  Before we decide to move the whole lot into a Python-based solution however, please peek into `Makefile`, and copy-paste the corresponding snippets of code in `Makefile` into your cmd, with the `$(PYTHON)` part replaced with `python`.
