@@ -14,7 +14,7 @@ import sys
 import logging
 import shutil
 
-logging.basicConfig()
+logging.basicConfig(format='%(message)s')
 log = logging.getLogger('withenv')
 logging.getLogger().setLevel(logging.INFO)
 
