@@ -1,3 +1,10 @@
+# Consider and explore if tox is good enough for development, and replace withenv.py if necessary
+
+# Core dependencies
 django==1.7.1
 django-jinja==1.0.4
+
+# Testing and development (okay, we'll need another requirements.txt for packaging with setuptools)
 pytest-django==2.7.0
+mock==1.0.1
+ipython>=2.3.0
