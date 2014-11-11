@@ -2,10 +2,10 @@ PYTHON=python
 .PHONY: migrate runserver test test-strict pytest flakes flake8
 
 migrate:
-	$(PYTHON) ./withenv.py manage.py migrate
+	$(PYTHON) ./withenv.py ./manage.py migrate
 
 runserver:
-	$(PYTHON) ./withenv.py manage.py runserver
+	$(PYTHON) ./withenv.py ./manage.py runserver
 
 test: pytest flakes
 

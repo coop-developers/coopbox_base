@@ -19,9 +19,9 @@ log = logging.getLogger('withenv')
 logging.getLogger().setLevel(logging.INFO)
 
 config = {
-    'virtualenv_binary': 'virtualenv',
+    'virtualenv_binary': 'virtualenv-{sys.version_info.major}.{sys.version_info.minor}',
     'requirements_file': 'requirements.txt',
-    'virtualenv_run_directory': '.virtualenv_run',
+    'virtualenv_run_directory': '.virtualenv_run_{sys.platform}',
     'bin_dir': 'bin',
     'default_action': ['bash', '-c',
         'echo This is a virtualenv shell; bash --norc'],
@@ -29,7 +29,6 @@ config = {
 
 platform_configs = {
     'win32': {
-        'virtualenv_run_directory': '.virtualenv_run_win',
         'virtualenv_binary': '{sys.executable}/../Scripts/virtualenv',
         'bin_dir': 'Scripts',
         'default_action': ['cmd', '/c', 'echo You must run a command under windows'],
@@ -38,11 +37,11 @@ platform_configs = {
 
 def update_platform_config():
     platform_config = platform_configs.get(sys.platform, {})
-    for key, value in platform_config.iteritems():
-        if isinstance(value, basestring):
-            platform_config[key] = value.format(**globals())
-
     config.update(platform_config)
+
+    for key, value in config.iteritems():
+        if isinstance(value, basestring):
+            config[key] = value.format(**globals())
 
 class Inenv(object):
 
@@ -78,6 +77,7 @@ class Inenv(object):
             except Exception:
                 log.info('Destroying (potentially broken) virtualenv directory')
                 shutil.rmtree(self.virtualenv_dir)
+                raise
     
     def get_virtualenv_path(self, path):
         return os.path.join(self.virtualenv_dir, path)

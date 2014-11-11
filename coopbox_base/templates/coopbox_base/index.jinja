@@ -1,5 +1,10 @@
-{% extends 'base/base.jinja' %}
-{% block main %}
-{{ url('coopbox_base.views.index.index') }}
-{{ site_config('DEBUG1') }}
+{% extends 'base/simple.layout.jinja' %}
+{% block page_title %}
+Test Page
+{% endblock %}
+{% block page_heading %}
+This is a test page
+{% endblock %}
+{% block content %}
+Some test content
 {% endblock %}
