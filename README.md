@@ -42,6 +42,21 @@ This will run all existing test cases and ensure that basic python styles are fo
 make test-strict
 ```
 
+## Logging
+If you need to log something (or debug statements), please use the standard python logging facilities in the `logging` module.  Add the following to lines to the top of your module:
+
+```
+import logging
+log = logging.getLogger(__name__)
+```
+
+Then, use `log.<level>(...)` to log messages, for example:
+
+```
+log.info('Hello World!')
+log.error('Failed to create table %s', table_name)
+```
+
 ## Troubleshooting
 Does any command not work?  Try `make clean` first!
 
