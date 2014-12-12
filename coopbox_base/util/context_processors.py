@@ -9,8 +9,8 @@ def coopbox_parameters(request):
     handled
     """
     parameters = {}
-    if request.is_ajax():
-        log.debug("Ajax identified")
+    if request.META.get('HTTP_X_REQUESTED_WITH_REAL'):
+        log.debug("Ajax identified, adding template variable")
         parameters['is_json'] = True
     else:
         log.debug("Not ajax")

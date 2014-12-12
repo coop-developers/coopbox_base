@@ -1,0 +1,41 @@
+{% extends 'base/simple.layout.jinja' %}
+{% block page_title %}
+Dashboard Test
+{% endblock %}
+{% block page_heading %}
+Dashboard - Multiple tools on the same page
+{% endblock %}
+{% block content %}
+
+<div class="dashboards">
+    <div class="dashboard" data-url="/">
+    </div>
+    <div class="dashboard" data-url="/calendar"></div>
+    <div class="dashboard-template-container" style="display: none">
+        <div class="wrap">
+            <h1 class="page-heading"></h1>
+            <div class="page-content"></div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script language="javascript">
+    $(function() {
+        function createDashboard(dashboard_response) {
+            var base_element = $(".dashboards .dashboard-template-container .wrap").clone();
+            base_element.find('.page-heading').html(dashboard_response.content.page_heading);
+            base_element.find('.page-content').html(dashboard_response.content.content);
+            return base_element;
+        }
+
+        $('.dashboards .dashboard').each(function() {
+            var thisElem = $(this);
+            $.get(thisElem.data('url')).success(function(data) {
+                thisElem.empty().append(createDashboard(data));
+            });
+        });
+    });
+</script>
+{% endblock %}

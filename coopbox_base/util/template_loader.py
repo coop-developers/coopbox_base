@@ -41,6 +41,7 @@ class TemplateProxy(object):
 
         rerender_context = copy.copy(context)  # Do only a shallow copy since we are not modifying any existing content
         rerender_context['original_blocks'] = original_blocks
+        log.debug('rerendering %s', rerender_context)
         return global_loader.load_template('coopbox_base/wrap.django.regular.jinja')[0].render(rerender_context)
 
     def _inject_proxy(self):

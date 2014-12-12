@@ -10,8 +10,7 @@ urlpatterns = patterns(
     # url(r'^$', 'coopbox_base.views.home', name='home'),
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', 'coopbox_base.views.index.index'),
+    url(r'^dashboards/$', 'coopbox_base.views.dashboard.dashboard'),
     url(r'^admin/', include(admin.site.urls)),
     url(r'calendar/', include('calendarium.urls')),
 )
-
-log.error('ho')
