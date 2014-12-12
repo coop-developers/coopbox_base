@@ -60,6 +60,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'coopbox_base.util.middlewares.CoopboxMiddleware',
 )
 
 ROOT_URLCONF = 'coopbox_base.urls'
