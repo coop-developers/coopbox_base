@@ -36,8 +36,21 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+# XXX: make the following automatically load from db or settings file
     'coopbox_base',
+    
+    'filer',
+    'mptt',
+    'easy_thumbnails',
+    'calendarium',
+
+# XXX: end above
 )
+
+MIGRATION_MODULES = {
+    'filer': 'filer.migrations_django',
+}
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -85,13 +98,54 @@ STATIC_URL = '/static/'
 
 # Django-jinja settings
 TEMPLATE_LOADERS = (
-    'django_jinja.loaders.AppLoader',
-    'django_jinja.loaders.FileSystemLoader',
+    'coopbox_base.util.template_loader.AppLoader',
+    'coopbox_base.util.template_loader.FileSystemLoader',
 )
 
 INSTALLED_APPS += ('django_jinja',)
 DEFAULT_JINJA2_TEMPLATE_EXTENSION = '.jinja'
 
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+    "django.core.context_processors.debug",
+    "django.core.context_processors.i18n",
+    "django.core.context_processors.media",
+    "django.core.context_processors.static",
+    "django.core.context_processors.tz",
+    "django.contrib.messages.context_processors.messages",
+    'django.core.context_processors.request',
+    'coopbox_base.util.context_processors.coopbox_parameters',
+)
+
 # Configurations
 # GOOGLE_ANALYTICS_ID = 'UA-XXXXX-X'
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'basic_format': {
+            'class': 'logging.Formatter',
+            'format': '%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+        }
+    },
+    'handlers': {
+        'console': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'basic_format',
+        },
+    },
+    'loggers': {
+        '': {
+            'handlers': ['console'],
+            'level': 'INFO',
+        },
+        # XXX: debug settings below to get rid of the annoying django db debug logs
+        'coopbox_base': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}

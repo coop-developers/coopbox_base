@@ -1,0 +1,8 @@
+{
+    "type": "page_fragment",
+    "content": {
+        "page_title": {{ self.page_title and self.page_title() | jsonify | safe }},
+        "page_heading": {{ self.page_heading and self.page_heading() | jsonify | safe }},
+        "content": {{ self.content() | jsonify | safe }}
+    }
+}

@@ -1,0 +1,11 @@
+{% extends "base/simple.layout.jinja" %}
+{% block extra_css %}
+    <link rel="stylesheet" href="{{ static("calendarium/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ static("calendarium/css/calendar.css") }}">
+{% endblock %}
+{% block extra_js %}
+    <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.8.21/jquery-ui.min.js"></script>
+{% endblock %}
+{% block content %}
+{{ original_blocks.main | safe }}
+{% endblock content %}

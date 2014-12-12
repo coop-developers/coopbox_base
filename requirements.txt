@@ -3,9 +3,11 @@
 # Core dependencies
 django==1.7.1
 django-jinja==1.0.4
+pytz
 
 # Testing and development (okay, we'll need another requirements.txt for packaging with setuptools)
 pytest-django==2.7.0
 mock==1.0.1
 flake8==2.2.5
 ipython>=2.3.0
+ipdb
